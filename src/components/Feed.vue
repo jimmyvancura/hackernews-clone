@@ -5,15 +5,14 @@
         <div class="post" v-for="post in posts" v-bind:key="post.id">
           <a :href="post.url">{{ post.title }}</a>
           <div class="postMeta">
-            <div>{{ post.score }} points</div>
-            <div>&nbsp;by {{ post.by }}</div>
-            <div>&nbsp;| {{ post.descendants }} comments</div>
+            <div>{{ post.score }}&nbsp;points</div>
+            <router-link :to="post.by | createUserLink">&nbsp;{{ post.by }}</router-link>
+            <div>&nbsp;| {{ post.descendants }}&nbsp;comments</div>
           </div>
       </div>
     </div>
     <div class="footer">
-      <!-- <a :href='nextPageRef' v-on:click="nextPage" style="margin-left: 10px">More</a> -->
-      <a href='#' v-on:click="nextPage" style="margin-left: 10px">More</a>
+      <router-link :to="page | createNextPageLink" style="margin-left: 10px">More</router-link>
       <hr style='border-top: 2px solid #ff6600; margin-top: 10px'/>
     </div>
   </div>
@@ -24,14 +23,29 @@ import { mapState } from 'vuex';
 import api from '../api'
 
 export default {
+  props: ['page'],
   name: 'Feed',
   computed: mapState({
-    posts: state => state.feed.page.posts
+    posts: state => state.feed.page.posts,
+    pageNumber: state => state.feed.page.number
   }),
-  methods: {
-    nextPage: () => {
-      api.nextPage();
+  filters: {
+    createUserLink: function(userid) {
+      return `/user/${userid}`;
+    },
+    createNextPageLink: function(page) {
+      const pageToLoad = page ? parseInt(page) + 1 : 1;
+      return `/?p=${pageToLoad}`;
+    },
+  },
+  watch: {
+    '$route' (to, from) {
+      api.loadPage(this.page);
     }
+  },
+  created: function() {
+    const pageToLoad = this.page ? this.page : 0;
+    api.loadTopStories(pageToLoad);
   }
 }
 </script>
@@ -70,7 +84,7 @@ export default {
   align-items: flex-start;
   margin-bottom: 5px;
 }
-.postMeta {
+.postMeta, .postMeta > a:link {
   display: flex;
   font-size: 7pt;
   color: #828282;

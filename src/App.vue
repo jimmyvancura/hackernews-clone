@@ -10,9 +10,6 @@ import store from './vuex/store'
 
 export default {
   name: 'app',
-  created() {
-    api.loadTopStories();
-  },
   store
 }
 </script>
