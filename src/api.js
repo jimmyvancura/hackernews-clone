@@ -42,6 +42,19 @@ const api = {
           pageNumber
         })
       }).catch(e => console.log(e));
+  },
+
+  loadUser: (userid) => {
+    axios.get(`https://hacker-news.firebaseio.com/v0/user/${userid}.json`)
+      .then(response => {
+        store.dispatch({
+          type: 'updateUser',
+          user: response.data
+        })
+    })
+    .catch(e => {
+      console.log(e);
+    })
   }
 }
 

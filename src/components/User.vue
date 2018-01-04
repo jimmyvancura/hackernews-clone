@@ -1,7 +1,11 @@
 <template>
   <div class="content">
     <div class="header">Hackweek News</div>
-    <div class="user">youzer</div>
+    <div class="user">
+      <div>user: {{ user.id }}</div>
+      <div>created: {{ user.created }}</div>
+      <div>karma: {{ user.karma }}</div>
+    </div>
   </div>
 </template>
 
@@ -10,7 +14,14 @@ import { mapState } from 'vuex';
 import api from '../api'
 
 export default {
+  props: ['userid'],
   name: 'User',
+  computed: mapState({
+    user: state => state.user.user
+  }),
+  created: function() {
+    api.loadUser(this.userid);
+  }
 }
 </script>
 
@@ -31,8 +42,7 @@ export default {
 .user {
   display: flex;
   flex-direction: column;
-  padding-top: 10px;
-  padding-left: 10px;
+  padding: 10px;
   background-color: #f6f6ef;
 }
 </style>
