@@ -44,13 +44,10 @@ const api = {
       }).catch(e => console.log(e));
   },
 
-  loadUser: (userid) => {
+  loadUser: (userid, userLoadedCallback) => {
     axios.get(`https://hacker-news.firebaseio.com/v0/user/${userid}.json`)
       .then(response => {
-        store.dispatch({
-          type: 'updateUser',
-          user: response.data
-        })
+        userLoadedCallback(response.data)
     })
     .catch(e => {
       console.log(e);

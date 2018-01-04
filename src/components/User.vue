@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="header">Hackweek News</div>
-    <div class="user">
+    <div class="user" v-if="user">
       <div>user: {{ user.id }}</div>
       <div>created: {{ user.created }}</div>
       <div>karma: {{ user.karma }}</div>
@@ -16,11 +16,13 @@ import api from '../api'
 export default {
   props: ['userid'],
   name: 'User',
-  computed: mapState({
-    user: state => state.user.user
-  }),
+  data() {
+    return {
+      user: {}
+    }
+  },
   created: function() {
-    api.loadUser(this.userid);
+    api.loadUser(this.userid, (user) => this.user = user);
   }
 }
 </script>
