@@ -12,8 +12,9 @@
       </div>
     </div>
     <div class="footer">
-      <button v-on:click="nextPage">More</button>
-      <hr style='border-top: 2px solid #ff6600'/>
+      <!-- <a :href='nextPageRef' v-on:click="nextPage" style="margin-left: 10px">More</a> -->
+      <a href='#' v-on:click="nextPage" style="margin-left: 10px">More</a>
+      <hr style='border-top: 2px solid #ff6600; margin-top: 10px'/>
     </div>
   </div>
 </template>
