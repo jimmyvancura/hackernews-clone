@@ -2,15 +2,16 @@
   <div class="content">
     <div class="header">Hackweek News</div>
     <div class="user" v-if="user">
-      <div>user: {{ user.id }}</div>
-      <div>created: {{ user.created }}</div>
-      <div>karma: {{ user.karma }}</div>
+      <div class="userField">user: {{ user.id }}</div>
+      <div class="userField">created: {{ user.created | formatCreated }}</div>
+      <div class="userField">karma: {{ user.karma }}</div>
     </div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import moment from 'moment';
 import api from '../api'
 
 export default {
@@ -20,6 +21,11 @@ export default {
     return {
       user: {}
     }
+  },
+  filters: {
+    formatCreated: function(created) {
+      return moment(created*1000).format('LLL');
+    },
   },
   created: function() {
     api.loadUser(this.userid, (user) => this.user = user);
@@ -46,5 +52,8 @@ export default {
   flex-direction: column;
   padding: 10px;
   background-color: #f6f6ef;
+}
+.userField {
+  margin-bottom: 5px;
 }
 </style>
