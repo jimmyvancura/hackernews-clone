@@ -11,8 +11,8 @@ export default {
       state.posts = payload.items;
       return state;
     },
-    hydratePosts (state, payload) {
-      state.page.number = 0;
+    setPage (state, payload) {
+      state.page.number = payload.pageNumber;
       state.page.posts = payload.items;
       return state;
     }
@@ -21,8 +21,8 @@ export default {
     updateFeed (context, payload) {
       context.commit('updateFeed', payload)
     },
-    hydratePosts (context, payload) {
-      context.commit('hydratePosts', payload)
+    setPage (context, payload) {
+      context.commit('setPage', payload)
     }
   }
 }
