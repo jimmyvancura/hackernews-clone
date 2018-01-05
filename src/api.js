@@ -1,7 +1,7 @@
 import axios from 'axios';
 import store from './vuex/store'
 
-const PAGE_SIZE = 15;
+export const PAGE_SIZE = 5;
 
 const api = {
   loadTopStories: (pageNumber) => {
@@ -19,7 +19,7 @@ const api = {
   },
 
   getPagePostIds: (pageNumber) => {
-    const nextPageNumber = pageNumber;
+    const nextPageNumber = pageNumber - 1;
     const startIndex = nextPageNumber * PAGE_SIZE;
     const endIndex = startIndex + PAGE_SIZE;
     return store.state.feed.posts.slice(startIndex, endIndex)

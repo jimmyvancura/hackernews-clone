@@ -3,7 +3,7 @@
     <div class="header">Hackweek News</div>
       <div class="feed">
         <div class="post" v-for="(post, index) in posts" v-bind:key="post.id">
-          <div class="postIndex"><span>{{ index + 1}}.</span></div>
+          <div class="postIndex"><span>{{ index | formatPageNumber(page)}}.</span></div>
           <div class="postContents">
             <a target="_new" :href="post.url">{{ post.title }}</a>
             <div class="postMeta">
@@ -23,7 +23,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import api from '../api'
+import api, { PAGE_SIZE } from '../api'
 
 export default {
   props: ['page'],
@@ -33,11 +33,17 @@ export default {
     pageNumber: state => state.feed.page.number
   }),
   filters: {
-    createUserLink: function(userid) {
+    formatPageNumber: (index, page) => {
+      console.log(page)
+      let realPage = page ? page-1 : 0;
+      const pageOffset = realPage*PAGE_SIZE;
+      return pageOffset + index + 1;
+    },
+    createUserLink: (userid) => {
       return `/user/${userid}`;
     },
-    createNextPageLink: function(page) {
-      const pageToLoad = page ? parseInt(page) + 1 : 1;
+    createNextPageLink: (page) => {
+      const pageToLoad = page ? parseInt(page) + 1 : 2;
       return `/?p=${pageToLoad}`;
     },
   },
@@ -47,7 +53,7 @@ export default {
     }
   },
   created: function() {
-    const pageToLoad = this.page ? this.page : 0;
+    const pageToLoad = this.page ? this.page : 1;
     api.loadTopStories(pageToLoad);
   }
 }
