@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="footer">
-      <router-link :to="page | createNextPageLink" class="moreButton">More</router-link>
+      <router-link :to="page | createNextPageLink" id="moreButton">More</router-link>
       <hr class="footerSeparator" />
     </div>
   </div>

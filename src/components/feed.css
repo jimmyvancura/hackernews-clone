@@ -64,8 +64,9 @@
   margin-top: 10px;
 }
 
-.moreButton {
+#moreButton {
   margin-left: 34px;
+  color: black;
 }
 
 a:visited {
