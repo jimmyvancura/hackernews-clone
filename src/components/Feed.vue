@@ -6,7 +6,7 @@
           <a :href="post.url">{{ post.title }}</a>
           <div class="postMeta">
             <div>{{ post.score }}&nbsp;points</div>
-            <router-link :to="post.by | createUserLink">&nbsp;{{ post.by }}</router-link>
+            <router-link :to="post.by | createUserLink" class="userLink">&nbsp;{{ post.by }}</router-link>
             <div>&nbsp;| {{ post.descendants }}&nbsp;comments</div>
           </div>
       </div>
@@ -93,6 +93,9 @@ export default {
   padding-top: 10px;
   height: 100px;
   background-color: #f6f6ef;
+}
+.userLink:hover {
+  text-decoration: underline;
 }
 a:visited {
     color: #828282;
