@@ -5,7 +5,7 @@
         <div class="post" v-for="(post, index) in posts" v-bind:key="post.id">
           <div class="postIndex"><span>{{ index + 1}}.</span></div>
           <div class="postContents">
-            <a :href="post.url">{{ post.title }}</a>
+            <a target="_new" :href="post.url">{{ post.title }}</a>
             <div class="postMeta">
               <div>{{ post.score }}&nbsp;points</div>
               <router-link :to="post.by | createUserLink" class="userLink">&nbsp;{{ post.by }}</router-link>
