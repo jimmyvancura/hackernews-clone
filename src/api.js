@@ -1,7 +1,7 @@
 import axios from 'axios';
 import store from './vuex/store'
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 15;
 
 const api = {
   loadTopStories: (pageNumber) => {

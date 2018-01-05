@@ -1,0 +1,79 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 80px;
+  margin-right: 80px;
+}
+
+.header {
+  background-color: #ff6600;
+  color: black;
+  padding: 5px;
+  font-weight: bold;
+}
+
+.feed {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  padding-left: 10px;
+  background-color: #f6f6ef;
+}
+
+.postTitle {
+  display: flex;
+  position: relative;
+}
+
+.postIndex {
+  width: 20px;
+  margin-right: 5px;
+  color: #828282;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.post {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 5px;
+}
+
+.postMeta {
+  margin-top: 2px;
+}
+
+.postMeta, .postMeta > a:link {
+  display: flex;
+  font-size: 7pt;
+  color: #828282;
+}
+
+.userLink:hover {
+  text-decoration: underline;
+}
+
+.footer {
+  padding-top: 10px;
+  height: 100px;
+  background-color: #f6f6ef;
+}
+
+.footerSeparator {
+  border-top: 2px solid #ff6600; 
+  margin-top: 10px;
+}
+
+.moreButton {
+  margin-left: 34px;
+}
+
+a:visited {
+    color: #828282;
+    text-decoration: none;
+}
+
+a:link {
+    color: #000000;
+    text-decoration: none;
+}

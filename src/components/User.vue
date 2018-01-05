@@ -35,25 +35,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.content {
-  display: flex;
-  flex-direction: column;
-  margin-left: 80px;
-  margin-right: 80px;
-}
-.header {
-  background-color: #ff6600;
-  color: black;
-  padding: 5px;
-  font-weight: bold;
-}
-.user {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  background-color: #f6f6ef;
-}
-.userField {
-  margin-bottom: 5px;
-}
+  @import './user.css'
 </style>
